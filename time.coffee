@@ -19,13 +19,10 @@ Time.prototype =
     @date.toString().replace /GMT-\d\d\d\d \([A-Z]+\)/, zone_offset_string
 
 
-Time.Numeric = new ->
-  @hour       = @hours       = -> @minutes() * 60
-  @minute     = @minutes     = -> @seconds() * 60
-  @second     = @seconds     = -> @miliseconds() * 1000
-  @milisecond = @miliseconds = -> @valueOf()
-
-Number.prototype[method] = procedure for method, procedure of Time.Numeric
+Number::milisecond = Number::miliseconds = -> @valueOf()
+Number::second     = Number::seconds     = -> @miliseconds() * 1000
+Number::minute     = Number::minutes     = -> @seconds() * 60
+Number::hour       = Number::hours       = -> @minutes() * 60
 
 
 Time.zone = utcOffset: -1 * (new Date).getTimezoneOffset() * 1.minute()
